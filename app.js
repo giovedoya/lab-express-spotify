@@ -7,9 +7,13 @@ const SpotifyWebApi = require('spotify-web-api-node');
 
 const app = express();
 
+const indexRouter = require('./routes/index')
+
 app.set('view engine', 'hbs');
 app.set('views', __dirname + '/views');
 app.use(express.static(__dirname + '/public'));
+
+
 
 const spotifyApi = new SpotifyWebApi({
     clientId: process.env.CLIENT_ID,
@@ -21,7 +25,8 @@ const spotifyApi = new SpotifyWebApi({
     .clientCredentialsGrant()
     .then(data => spotifyApi.setAccessToken(data.body['access_token']))
     .catch(error => console.log('Something went wrong when retrieving an access token', error));
-    
+
 // Our routes go here:
+app.use('/', indexRouter);
 
 app.listen(3000, () => console.log('My Spotify project running on port 3000 🎧 🥁 🎸 🔊'));
