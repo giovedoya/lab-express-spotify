@@ -8,6 +8,7 @@ const SpotifyWebApi = require('spotify-web-api-node');
 const app = express();
 
 const indexRouter = require('./routes/index')
+const artistRouter = require('/routes/artist-search-results')
 
 app.set('view engine', 'hbs');
 app.set('views', __dirname + '/views');
@@ -28,5 +29,23 @@ const spotifyApi = new SpotifyWebApi({
 
 // Our routes go here:
 app.use('/', indexRouter);
+app.use('/artist-search-results', artistRouter);
+
+spotifyApi
+  .searchArtists(/*'HERE GOES THE QUERY ARTIST'*/)
+  .then(data => {
+    console.log('The received data from the API: ', data.body);
+    // ----> 'HERE WHAT WE WANT TO DO AFTER RECEIVING THE DATA FROM THE API'
+  })
+  .catch(err => console.log('The error while searching artists occurred: ', err));
+
+
+spotifyApi
+  .searchArtists(/*'HERE GOES THE QUERY ARTIST'*/)
+  .then(data => {
+    console.log('The received data from the API: ', data.body);
+    // ----> 'HERE WHAT WE WANT TO DO AFTER RECEIVING THE DATA FROM THE API'
+  })
+  .catch(err => console.log('The error while searching artists occurred: ', err));
 
 app.listen(3000, () => console.log('My Spotify project running on port 3000 🎧 🥁 🎸 🔊'));
