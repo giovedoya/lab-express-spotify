@@ -1,8 +1,12 @@
+<div class="page-artists">
 {{#each artistData}}
-  <div class="artist">
+  <div class="artists">
+    <img  src="{{images.0.url}}" alt="{{name}}">
     <h2>{{name}}</h2>
-    <img src="{{images.0.url}}" alt="{{name}}">
-    <button><a href="/albums/{{id}}">View albums</a></button>
+    <button class="butt-tracks"><a href="/albums/{{id}}">View albums</a></button>
+    <button class="butt-tracks"><a href="/">Go home</a></button>
   </div>
 {{/each}}
+</div>
+
 
